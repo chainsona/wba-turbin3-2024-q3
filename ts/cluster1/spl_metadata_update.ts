@@ -1,9 +1,6 @@
 import wallet from "../wba-wallet.json";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import {
-  createMetadataAccountV3,
-  CreateMetadataAccountV3InstructionAccounts,
-  CreateMetadataAccountV3InstructionArgs,
   DataV2Args,
   updateMetadataAccountV2,
   UpdateMetadataAccountV2InstructionAccounts,
@@ -22,34 +19,30 @@ const mint = publicKey("xGH6b6B8gBqrPse7LiFtiVeQWWVx5NSVQ6berXpXzpT");
 // Create a UMI connection
 const umi = createUmi("https://api.devnet.solana.com");
 const keypair = umi.eddsa.createKeypairFromSecretKey(new Uint8Array(wallet));
-const signer = createSignerFromKeypair(umi, keypair);
 umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
 
 (async () => {
   try {
     // Start here
-    let accounts: CreateMetadataAccountV3InstructionAccounts = {
-      mint,
-      mintAuthority: signer,
-    };
-
     let data: DataV2Args = {
       name: "Soona Coin",
       symbol: "SOONA",
-      uri: "",
+      uri: "https://chainsona.dev/api/metadata/soona-coin",
       sellerFeeBasisPoints: 0,
       collection: null,
       creators: null,
       uses: null,
     };
 
-    let args: CreateMetadataAccountV3InstructionArgs = {
+    let args: UpdateMetadataAccountV2InstructionArgs = {
       data,
-      isMutable: true,
-      collectionDetails: null,
     };
 
-    let tx = createMetadataAccountV3(umi, {
+    let accounts: UpdateMetadataAccountV2InstructionAccounts = {
+      metadata: publicKey("8yuAqhzcip7ntkZWxh3ntBZm6yQs8ss8pGSaUJBbmHhj"),
+    };
+
+    let tx = updateMetadataAccountV2(umi, {
       ...accounts,
       ...args,
     });
@@ -60,7 +53,7 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
         result.signature
       )}?cluster=devnet-alpha`
     );
-    // https://solana.fm/tx/3kU4xHPJXk2BYRbhFQr6qZokkFsubrgt2kpSZvQ1ttgFbT58eVkXoRBASvQCFr2sYcAm9C36KE5E2hRumE2cj2Km?cluster=mainnet-alpha
+    // https://solana.fm/tx/5RYpE43QHTGQFmxWDWrxP1ofMYjjihSuM2XfrKTzHcA8zGhSaT449CBhgGS8WiAbgK3LcG1hippwXyAu6Cunep1U?cluster=devnet-alpha
   } catch (e) {
     console.error(`Oops, something went wrong: ${e}`);
   }
