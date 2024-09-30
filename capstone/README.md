@@ -1,14 +1,13 @@
 # Capstone Project: VeriFi Marketplace
 
-## Initialize
+## Initialize marketplace
 
-## List a product
+## Create a listing for data
 
-## Buy a product
+## Buy data from a listing
 
-## Withdraw product earnings
+## Cancel listing
 
-## Delist a product
+## Withdraw marketplace earnings
 
-## Search by product category
-
+## Search by data category
