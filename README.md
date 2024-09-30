@@ -17,6 +17,7 @@
 
 ## Proof of History
 
+- [Capstone: VeriFi](./capstone/README.md)
 - [Class Week 1](./docs/course/week1/README.md)
 - [Rust Registration](./docs/course/week0/README.md#rust-registration)
 - [Prerequisite](./docs/course/week0/README.md#prerequisite)
