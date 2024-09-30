@@ -11,7 +11,7 @@ verifi = "3JeB3GW3NoD3CcCi7MjKL7GTpqCgXcHDyEc247jAMiGs"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Devnet"
+cluster = "Localnet"
 wallet = "~/.config/solana/wba.json"
 
 [scripts]

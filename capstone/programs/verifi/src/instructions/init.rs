@@ -11,12 +11,13 @@ pub struct Initialize<'info> {
     #[account(
         init,
         payer = admin,
-        seeds = [b"marketplace", name.as_str().as_bytes()],
+        seeds = [b"marketplace", name.as_bytes()],
         bump,
         space = Marketplace::INIT_SPACE
     )]
     pub marketplace: Account<'info, Marketplace>,
     #[account(
+        mut,
         seeds = [b"treasury", marketplace.key().as_ref()],
         bump,
     )]
@@ -24,11 +25,12 @@ pub struct Initialize<'info> {
     pub system_program: Program<'info, System>,
 }
 
-pub fn handler(ctx: Context<Initialize>, name: String, fee: u16) -> Result<()> {
+pub fn init(ctx: Context<Initialize>, name: String, fee: u16) -> Result<()> {
     require!(
         !name.is_empty() && name.len() <= 32,
         MarketplaceError::NameTooLong
     );
+
     ctx.accounts.marketplace.set_inner(Marketplace {
         admin: ctx.accounts.admin.key(),
         fee,
