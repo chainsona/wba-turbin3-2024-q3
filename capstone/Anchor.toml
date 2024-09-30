@@ -5,13 +5,13 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-verifi = "3JeB3GW3NoD3CcCi7MjKL7GTpqCgXcHDyEc247jAMiGs"
+verifi = "9PtasCZytSVZwyJtkmGpdwVR7wVrYDBAFddzVwtehRKn"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
+cluster = "Devnet"
 wallet = "~/.config/solana/wba.json"
 
 [scripts]
